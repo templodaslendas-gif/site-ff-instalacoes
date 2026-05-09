@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0a1628;
+  --navy-mid: #0d1f3c;
+  --navy-light: #152847;
+  --brand: #1a6cf5;
+  --brand-vivid: #2979ff;
+  --brand-glow: #4a9eff;
+  --gray-cool: #f0f4f8;
+  --gray-mid: #8fa3b8;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #ffffff;
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Sora', sans-serif;
+}
+
+/* ── HERO GRID OVERLAY ── */
+.hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(26, 108, 245, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 108, 245, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── HEADER ── */
+.header-transparent {
+  padding: 20px 0;
+  background: transparent;
+  transition: all 0.4s ease;
+}
+
+.header-scrolled {
+  padding: 12px 0;
+  background: rgba(10, 22, 40, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(26, 108, 245, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--brand);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── SERVICE CARD ── */
+.service-card {
+  background: white;
+  border: 1px solid #e2ecf8;
+  border-radius: 16px;
+  padding: 36px 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-glow));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(26, 108, 245, 0.12);
+  border-color: rgba(26, 108, 245, 0.2);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── GALLERY ── */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--navy);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 22, 40, 0.7) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* ── TESTIMONIAL CARD ── */
+.testimonial-card {
+  background: white;
+  border: 1px solid #e2ecf8;
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'Sora', sans-serif;
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 800;
+  color: #e8f1ff;
+  pointer-events: none;
+}
+
+/* ── FLOATING WHATSAPP ── */
+.float-wa {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 58px;
+  height: 58px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+  text-decoration: none;
+  transition: all 0.2s;
+  animation: pulse-wa 2.5s infinite;
+}
+
+.float-wa:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45); }
+  50% { box-shadow: 0 6px 36px rgba(37, 211, 102, 0.7); }
+}
+
+/* ── DIFF CARD ── */
+.diff-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 24px;
+  background: white;
+  border: 1px solid #e2ecf8;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.diff-card:hover {
+  border-color: rgba(26, 108, 245, 0.3);
+  box-shadow: 0 8px 24px rgba(26, 108, 245, 0.08);
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+
+.section-label::before {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: var(--brand);
+  border-radius: 2px;
+}
+
+/* ── FADE UP ANIMATION ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── FORM INPUT ── */
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px solid #dde8f4;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--navy);
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--brand);
+  background: white;
+}
+
+.form-input::placeholder {
+  color: #9bb0c8;
+}
+
+/* ── SCROLL INDICATOR ── */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.15); }
+}
+
+.scroll-indicator {
+  animation: scrollPulse 1.6s ease infinite;
+}
