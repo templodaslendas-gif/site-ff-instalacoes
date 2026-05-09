@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import logoImg from '../assets/images/logo.png'
 
 const WA_NUMBER = '5545988114290'
 const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Olá! Gostaria de um orçamento.')}`
@@ -13,17 +14,12 @@ const NAV_LINKS = [
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-3 no-underline">
-      <div className="w-10 h-10 bg-brand rounded-[9px] flex items-center justify-center flex-shrink-0">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-          <polyline points="9 22 9 12 15 12 15 22" />
-        </svg>
-      </div>
-      <div>
-        <div className="font-sora font-bold text-[17px] tracking-wide leading-tight text-white">F & F</div>
-        <div className="text-[10px] tracking-[0.12em] uppercase text-white/50 font-medium">Instalações</div>
-      </div>
+    <a href="#" className="flex items-center no-underline">
+      <img
+        src={logoImg}
+        alt="F&F Instalações"
+        className="h-10 w-auto"
+      />
     </a>
   )
 }
@@ -86,11 +82,14 @@ export default function Header() {
           >
             {mobileOpen ? (
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             ) : (
               <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
               </svg>
             )}
           </button>
@@ -121,4 +120,3 @@ export default function Header() {
       )}
     </header>
   )
-}
