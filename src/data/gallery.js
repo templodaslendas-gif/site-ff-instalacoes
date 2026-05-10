@@ -1,41 +1,44 @@
-// Substitua os caminhos pelos arquivos reais em src/assets/images/
-// Resolução recomendada: 800x600 para cards, 800x1000 para o card central
+// Galeria de projetos com categorias e tamanhos diferentes para layout mosaico
 
 export const galleryItems = [
   {
     id: 1,
-    src: '/src/assets/images/ar-condicionado-01.jpg',
-    alt: 'Instalação de ar condicionado split residencial',
-    label: 'Split Residencial',
-    style: { gridColumn: '1/2', gridRow: '1/2' },
+    file: 'condensadora-01.jpg',
+    alt: 'Instalação de condensadoras Gree',
+    label: 'Condensadoras Gree',
+    category: 'Climatização',
+    size: 'large', // ocupa 2 colunas
   },
   {
     id: 2,
-    src: '/src/assets/images/camera-seguranca-01.jpg',
-    alt: 'Sistema de câmeras de segurança instalado',
-    label: 'Sistema de Segurança',
-    style: { gridColumn: '2/3', gridRow: '1/3' },
-    tall: true,
+    file: 'ar-condicionado-01.jpg',
+    alt: 'Split residencial instalado',
+    label: 'Split Residencial',
+    category: 'Climatização',
+    size: 'normal',
   },
   {
     id: 3,
-    src: '/src/assets/images/infraestrutura-eletrica-01.jpg',
-    alt: 'Infraestrutura elétrica para ar condicionado',
-    label: 'Infraestrutura Elétrica',
-    style: { gridColumn: '3/4', gridRow: '1/2' },
+    file: 'camera-seguranca-01.jpg',
+    alt: 'Sistema de câmeras de segurança',
+    label: 'Sistema CCTV',
+    category: 'Segurança',
+    size: 'normal',
   },
   {
     id: 4,
-    src: '/src/assets/images/condensadora-01.jpg',
-    alt: 'Condensadora externa de ar condicionado',
-    label: 'Condensadora',
-    style: { gridColumn: '1/2', gridRow: '2/3' },
+    file: 'infraestrutura-eletrica-01.jpg',
+    alt: 'Infraestrutura elétrica para split',
+    label: 'Infraestrutura',
+    category: 'Climatização',
+    size: 'normal',
   },
   {
     id: 5,
-    src: '/src/assets/images/ambiente-comercial-01.jpg',
-    alt: 'Ambiente comercial climatizado',
-    label: 'Ambiente Comercial',
-    style: { gridColumn: '3/4', gridRow: '2/3' },
+    file: 'ambiente-comercial-01.jpg',
+    alt: 'Cerca elétrica instalada em residência',
+    label: 'Cerca Elétrica',
+    category: 'Segurança',
+    size: 'large', // ocupa 2 colunas
   },
 ]
