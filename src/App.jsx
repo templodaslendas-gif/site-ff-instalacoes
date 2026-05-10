@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import Services from './components/Services'
 import About from './components/About'
 import Gallery from './components/Gallery'
+import Brands from './components/Brands'
 import Differentials from './components/Differentials'
 import Testimonials from './components/Testimonials'
 import CtaBanner from './components/CtaBanner'
@@ -20,6 +21,7 @@ export default function App() {
         <Services />
         <About />
         <Gallery />
+        <Brands />
         <Differentials />
         <Testimonials />
         <CtaBanner />
