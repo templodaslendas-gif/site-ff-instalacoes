@@ -3,55 +3,102 @@ import { services } from '../data/services'
 
 const ICONS = {
   ac: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="3" width="20" height="8" rx="2" /><path d="M2 13h20M7 17h10M12 21v-4" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="9" rx="2" />
+      <path d="M2 14h20M7 18h10M12 22v-4" />
+      <line x1="6" y1="8" x2="6" y2="9" /><line x1="10" y1="8" x2="10" y2="9" /><line x1="14" y1="8" x2="14" y2="9" /><line x1="18" y1="8" x2="18" y2="9" />
     </svg>
   ),
   maintenance: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
     </svg>
   ),
   hygiene: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 12a9 9 0 1018 0 9 9 0 00-18 0" /><path d="M12 8v4l3 3" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L4 8v8c0 4.5 3.5 8 8 8s8-3.5 8-8V8l-8-6z" />
+      <polyline points="9 12 11 14 15 10" />
     </svg>
   ),
   camera: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="2" />
-      <path d="M2 12h2M20 12h2M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 7l4-3h10l4 3v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+      <circle cx="12" cy="13" r="4" />
+      <circle cx="12" cy="13" r="1.5" fill="currentColor" />
     </svg>
   ),
   alarm: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="13" r="8" />
+      <path d="M12 9v4l2 2" />
+      <path d="M5 3L2 6M19 3l3 3" />
+      <line x1="12" y1="2" x2="12" y2="4" />
     </svg>
   ),
   fence: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 21V8l4-3 4 3 4-3 4 3v13" />
+      <line x1="4" y1="13" x2="20" y2="13" />
+      <line x1="8" y1="5" x2="8" y2="21" />
+      <line x1="12" y1="5" x2="12" y2="21" />
+      <line x1="16" y1="5" x2="16" y2="21" />
     </svg>
   ),
 }
 
-function ServiceCard({ service }) {
+const CATEGORY_STYLES = {
+  Climatização: 'bg-blue-50 text-brand border-blue-100',
+  Segurança: 'bg-orange-50 text-orange-600 border-orange-100',
+}
+
+function ServiceCard({ service, index }) {
   const waLink = `https://wa.me/5545988114290?text=${encodeURIComponent(service.waMessage)}`
+  const categoryStyle = CATEGORY_STYLES[service.category] || CATEGORY_STYLES.Climatização
+
   return (
-    <div className="service-card fade-up">
-      <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5 text-brand"
-        style={{ background: 'linear-gradient(135deg,#e8f1ff,#d0e3ff)' }}>
-        <div className="w-[26px] h-[26px]">{ICONS[service.icon]}</div>
+    <div className="service-card-premium fade-up group" style={{ transitionDelay: `${index * 60}ms` }}>
+      {/* Number badge */}
+      <div className="absolute top-6 right-6 font-sora font-extrabold text-[40px] text-[#e8f1ff] leading-none transition-all duration-500 group-hover:text-brand/15 group-hover:scale-110">
+        {service.number}
       </div>
-      <h3 className="font-sora font-bold text-[18px] text-navy mb-2.5">{service.title}</h3>
-      <p className="text-[#6b87a0] text-sm leading-[1.7] mb-5">{service.description}</p>
+
+      {/* Category tag */}
+      <div className={`inline-flex items-center text-[10px] font-sora font-bold uppercase tracking-[0.12em] px-2.5 py-1 rounded-full border ${categoryStyle} mb-6`}>
+        {service.category}
+      </div>
+
+      {/* Icon */}
+      <div className="relative mb-6">
+        <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-brand transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6"
+          style={{ background: 'linear-gradient(135deg,#e8f1ff,#d0e3ff)' }}>
+          <div className="w-8 h-8">{ICONS[service.icon]}</div>
+        </div>
+        {/* Decorative shadow layer */}
+        <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-brand/20 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+      </div>
+
+      {/* Title */}
+      <h3 className="font-sora font-bold text-[19px] text-navy mb-3 leading-tight">
+        {service.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-[#6b87a0] text-[14px] leading-[1.7] mb-6 min-h-[88px]">
+        {service.description}
+      </p>
+
+      {/* CTA */}
       <a
         href={waLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-sora text-[13px] font-semibold text-brand no-underline hover:underline"
+        className="inline-flex items-center gap-2 font-sora text-[13px] font-semibold text-brand hover:text-brand-vivid transition-colors duration-200 group/btn"
       >
-        Saiba mais →
+        Solicitar orçamento
+        <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" className="transition-transform duration-300 group-hover/btn:translate-x-1" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
       </a>
     </div>
   )
@@ -63,9 +110,9 @@ export default function Services() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, i) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add('visible'), i * 80)
+            entry.target.classList.add('visible')
             observer.unobserve(entry.target)
           }
         })
@@ -78,24 +125,73 @@ export default function Services() {
   }, [])
 
   return (
-    <section id="servicos" ref={sectionRef} className="py-24 bg-[#f8fafc]">
-      <div className="max-w-7xl mx-auto px-5">
-        <div className="text-center mb-14 fade-up">
+    <section id="servicos" ref={sectionRef} className="py-24 lg:py-32 bg-gradient-to-b from-white via-[#f8fafc] to-white relative overflow-hidden">
+      {/* Decorative background patterns */}
+      <div
+        className="absolute top-1/3 -left-40 w-[500px] h-[500px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle,rgba(26,108,245,0.05) 0%,transparent 70%)' }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-1/3 -right-40 w-[500px] h-[500px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle,rgba(74,158,255,0.05) 0%,transparent 70%)' }}
+        aria-hidden="true"
+      />
+
+      <div className="max-w-7xl mx-auto px-5 relative z-10">
+        {/* Section header */}
+        <div className="text-center mb-16 lg:mb-20 max-w-2xl mx-auto fade-up">
           <div className="section-label justify-center">Nossos Serviços</div>
-          <h2 className="font-sora font-extrabold text-navy leading-[1.2] mb-4"
-            style={{ fontSize: 'clamp(1.8rem,3.5vw,2.8rem)' }}>
-            Soluções completas para sua<br />
-            <span className="text-brand">residência e empresa</span>
+          <h2 className="font-sora font-extrabold text-navy leading-[1.15] mb-5"
+            style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>
+            Soluções completas em<br />
+            <span className="bg-gradient-to-r from-brand to-brand-glow bg-clip-text text-transparent">
+              climatização e segurança
+            </span>
           </h2>
-          <p className="text-[#6b87a0] max-w-[520px] mx-auto text-base leading-[1.7]">
-            Da instalação à manutenção, oferecemos um portfólio completo com execução técnica de alto nível.
+          <p className="text-[#6b87a0] text-[16px] sm:text-[17px] leading-[1.7]">
+            Da instalação à manutenção, oferecemos um portfólio completo com execução técnica de alto nível para sua casa ou empresa.
           </p>
         </div>
 
-        <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))' }}>
-          {services.map((s) => (
-            <ServiceCard key={s.id} service={s} />
+        {/* Services grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((s, i) => (
+            <ServiceCard key={s.id} service={s} index={i} />
           ))}
+        </div>
+
+        {/* Bottom CTA strip */}
+        <div className="mt-16 lg:mt-20 fade-up">
+          <div className="bg-gradient-to-r from-navy via-navy-mid to-navy rounded-[20px] p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-[0_20px_60px_-20px_rgba(10,22,40,0.4)] relative overflow-hidden">
+            {/* Decorative glow */}
+            <div className="absolute -top-20 -right-20 w-[300px] h-[300px] pointer-events-none"
+              style={{ background: 'radial-gradient(circle,rgba(26,108,245,0.25) 0%,transparent 60%)' }}
+              aria-hidden="true"
+            />
+
+            <div className="text-center sm:text-left relative z-10">
+              <div className="text-brand-glow text-[12px] font-sora font-bold uppercase tracking-[0.12em] mb-2">
+                Não encontrou o que precisa?
+              </div>
+              <div className="font-sora text-white text-[20px] sm:text-[24px] font-bold">
+                Atendemos serviços personalizados
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/5545988114290?text=${encodeURIComponent('Olá! Preciso de um serviço personalizado.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-10 flex items-center gap-2 bg-white text-navy hover:bg-brand hover:text-white font-sora font-semibold text-[14px] px-6 py-3.5 rounded-[10px] transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap"
+            >
+              Falar com um especialista
+              <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>

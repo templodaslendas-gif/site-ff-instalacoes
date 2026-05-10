@@ -104,7 +104,7 @@ h1, h2, h3, h4, h5 {
   transform: scaleX(1);
 }
 
-/* ── SERVICE CARD ── */
+/* ── SERVICE CARD (legacy) ── */
 .service-card {
   background: white;
   border: 1px solid #e2ecf8;
@@ -136,6 +136,53 @@ h1, h2, h3, h4, h5 {
 
 .service-card:hover::before {
   transform: scaleX(1);
+}
+
+/* ── SERVICE CARD PREMIUM ── */
+.service-card-premium {
+  background: white;
+  border: 1px solid #e2ecf8;
+  border-radius: 20px;
+  padding: 36px 32px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(10, 22, 40, 0.04);
+}
+
+.service-card-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(180deg, var(--brand), var(--brand-glow));
+  transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-card-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(26, 108, 245, 0.06) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.service-card-premium:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px -15px rgba(26, 108, 245, 0.18);
+  border-color: rgba(26, 108, 245, 0.25);
+}
+
+.service-card-premium:hover::before {
+  height: 100%;
+}
+
+.service-card-premium:hover::after {
+  opacity: 1;
 }
 
 /* ── GALLERY ── */
@@ -308,7 +355,7 @@ h1, h2, h3, h4, h5 {
   animation: scrollPulse 1.6s ease infinite;
 }
 
-/* ── PING ANIMATION (live indicator) ── */
+/* ── PING ANIMATION ── */
 @keyframes ping {
   75%, 100% {
     transform: scale(2);
