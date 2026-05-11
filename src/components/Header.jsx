@@ -24,7 +24,7 @@ function Logo() {
   )
 }
 
-function WhatsAppIcon({ size = 16 }) {
+function WhatsAppIcon({ size = 18 }) {
   return (
     <svg width={size} height={size} fill="currentColor" viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
@@ -41,8 +41,6 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40)
-
-      // Detect active section
       const sections = NAV_LINKS.map((l) => document.getElementById(l.id)).filter(Boolean)
       const scrollPos = window.scrollY + 200
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -56,7 +54,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Block scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -74,7 +71,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-5 flex items-center justify-between">
           <Logo />
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav — letras maiores */}
           <nav className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id
@@ -82,10 +79,8 @@ export default function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 font-sora text-[14px] font-medium tracking-wide rounded-md transition-all duration-200 ${
-                    isActive
-                      ? 'text-white'
-                      : 'text-white/65 hover:text-white'
+                  className={`relative px-4 py-2 font-sora text-[15px] font-semibold tracking-wide rounded-md transition-all duration-200 ${
+                    isActive ? 'text-white' : 'text-white/75 hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -98,44 +93,43 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* WhatsApp button - desktop */}
+            {/* Botão WhatsApp VERDE */}
             <a
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-2 bg-brand hover:bg-brand-vivid text-white font-sora text-[13px] font-semibold px-5 py-[11px] rounded-[8px] tracking-wide transition-all duration-300 hover:-translate-y-0.5 shadow-[0_4px_14px_rgba(26,108,245,0.35)] hover:shadow-[0_8px_24px_rgba(26,108,245,0.5)] relative overflow-hidden group"
+              className="hidden sm:flex items-center gap-2 text-white font-sora text-[14px] font-bold px-5 py-[11px] rounded-[8px] tracking-wide transition-all duration-300 hover:-translate-y-0.5 relative overflow-hidden group"
+              style={{
+                background: '#25d366',
+                boxShadow: '0 4px 14px rgba(37,211,102,0.4)',
+              }}
+              onMouseOver={e => e.currentTarget.style.boxShadow = '0 8px 24px rgba(37,211,102,0.6)'}
+              onMouseOut={e => e.currentTarget.style.boxShadow = '0 4px 14px rgba(37,211,102,0.4)'}
             >
               <span className="relative z-10 flex items-center gap-2">
-                <WhatsAppIcon />
+                <WhatsAppIcon size={17} />
                 Fale Conosco
               </span>
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </a>
 
-            {/* Hamburger - mobile */}
+            {/* Hamburger */}
             <button
               className="lg:hidden text-white p-2 rounded-md hover:bg-white/10 transition-colors"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Menu"
-              aria-expanded={mobileOpen}
             >
               <div className="w-6 h-6 relative flex items-center justify-center">
-                <span className={`absolute h-[2px] bg-white rounded transition-all duration-300 ${
-                  mobileOpen ? 'w-6 rotate-45' : 'w-6 -translate-y-2'
-                }`} />
-                <span className={`absolute h-[2px] bg-white rounded transition-all duration-300 ${
-                  mobileOpen ? 'w-0 opacity-0' : 'w-6 opacity-100'
-                }`} />
-                <span className={`absolute h-[2px] bg-white rounded transition-all duration-300 ${
-                  mobileOpen ? 'w-6 -rotate-45' : 'w-6 translate-y-2'
-                }`} />
+                <span className={`absolute h-[2px] bg-white rounded transition-all duration-300 ${mobileOpen ? 'w-6 rotate-45' : 'w-6 -translate-y-2'}`} />
+                <span className={`absolute h-[2px] bg-white rounded transition-all duration-300 ${mobileOpen ? 'w-0 opacity-0' : 'w-6 opacity-100'}`} />
+                <span className={`absolute h-[2px] bg-white rounded transition-all duration-300 ${mobileOpen ? 'w-6 -rotate-45' : 'w-6 translate-y-2'}`} />
               </div>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu - fullscreen overlay */}
+      {/* Mobile Menu */}
       <div
         className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
@@ -153,7 +147,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="font-sora text-[24px] font-semibold text-white/85 hover:text-brand-glow py-4 border-b border-white/10 transition-all duration-300"
+                className="font-sora text-[26px] font-bold text-white/85 hover:text-brand-glow py-4 border-b border-white/10 transition-all duration-300"
                 style={{
                   transitionDelay: mobileOpen ? `${i * 60}ms` : '0ms',
                   opacity: mobileOpen ? 1 : 0,
@@ -170,14 +164,14 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Bottom actions */}
           <div className="flex flex-col gap-3 mt-10">
             <a
               href={WA_LINK}
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
-              className="flex items-center justify-center gap-3 bg-brand text-white font-sora text-[15px] font-semibold px-6 py-4 rounded-[10px] shadow-[0_8px_24px_rgba(26,108,245,0.35)]"
+              className="flex items-center justify-center gap-3 text-white font-sora text-[15px] font-bold px-6 py-4 rounded-[10px]"
+              style={{ background: '#25d366', boxShadow: '0 8px 24px rgba(37,211,102,0.35)' }}
             >
               <WhatsAppIcon size={18} />
               Falar no WhatsApp
