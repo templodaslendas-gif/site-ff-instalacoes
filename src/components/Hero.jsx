@@ -1,10 +1,10 @@
 const WA_ORCAMENTO = `https://wa.me/5545988114290?text=${encodeURIComponent('Olá! Quero solicitar um orçamento.')}`
 
 const TRUST_BADGES = [
-  { icon: '✓', text: 'Atendimento rápido' },
-  { icon: '✓', text: 'Equipe especializada' },
-  { icon: '✓', text: 'Orçamento sem compromisso' },
-  { icon: '✓', text: 'Atendimento regional' },
+  { text: 'Atendimento rápido' },
+  { text: 'Equipe especializada' },
+  { text: 'Orçamento sem compromisso' },
+  { text: 'Atendimento regional' },
 ]
 
 const QUICK_STATS = [
@@ -25,62 +25,48 @@ function WhatsAppIcon({ size = 18 }) {
 export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen bg-navy flex items-center overflow-hidden">
-      {/* Background image with subtle parallax feel */}
       <div
         className="absolute inset-0 bg-center bg-cover scale-110"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=85')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=85')",
           opacity: 0.15,
         }}
         aria-hidden="true"
       />
-
-      {/* Grid texture overlay */}
       <div className="absolute inset-0 hero-grid-overlay" aria-hidden="true" />
-
-      {/* Premium gradient overlay */}
       <div
         className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(125deg,rgba(10,22,40,0.98) 0%,rgba(10,22,40,0.88) 45%,rgba(13,31,60,0.92) 100%)',
-        }}
+        style={{ background: 'linear-gradient(125deg,rgba(10,22,40,0.98) 0%,rgba(10,22,40,0.88) 45%,rgba(13,31,60,0.92) 100%)' }}
         aria-hidden="true"
       />
-
-      {/* Animated blue glow accents */}
       <div
         className="absolute -top-40 -right-40 w-[700px] h-[700px] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(circle,rgba(26,108,245,0.18) 0%,transparent 60%)',
-        }}
+        style={{ background: 'radial-gradient(circle,rgba(26,108,245,0.18) 0%,transparent 60%)' }}
         aria-hidden="true"
       />
       <div
         className="absolute -bottom-40 -left-40 w-[600px] h-[600px] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(circle,rgba(74,158,255,0.10) 0%,transparent 60%)',
-        }}
+        style={{ background: 'radial-gradient(circle,rgba(74,158,255,0.10) 0%,transparent 60%)' }}
         aria-hidden="true"
       />
 
-      {/* Content container */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 w-full pt-32 pb-16 lg:pb-24">
         <div className="max-w-4xl">
 
-          {/* Badge — location */}
-          <div className="inline-flex items-center gap-2 bg-brand/10 border border-brand/30 text-brand-glow font-sora text-[12px] font-semibold tracking-[0.12em] uppercase px-4 py-2 rounded-full mb-7 backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
+          {/* Badge — 3 cidades */}
+          <div className="inline-flex flex-wrap items-center gap-2 bg-brand/10 border border-brand/30 text-brand-glow font-sora text-[12px] font-semibold tracking-[0.08em] uppercase px-4 py-2 rounded-full mb-7 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2 flex-shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-glow opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-glow"></span>
             </span>
-            Marechal Cândido Rondon — PR
+            <span>Marechal Cândido Rondon</span>
+            <span className="text-brand/50">·</span>
+            <span>Toledo</span>
+            <span className="text-brand/50">·</span>
+            <span>Cascavel — PR</span>
           </div>
 
-          {/* Main headline */}
+          {/* Headline */}
           <h1 className="font-sora font-extrabold text-white leading-[1.05] tracking-[-0.02em] mb-7"
             style={{ fontSize: 'clamp(2.5rem,6vw,4.5rem)' }}>
             Especialistas em<br />
@@ -93,7 +79,7 @@ export default function Hero() {
           {/* Subheadline */}
           <p className="text-white/70 leading-[1.6] max-w-[640px] mb-10 font-light"
             style={{ fontSize: 'clamp(1.05rem,2vw,1.25rem)' }}>
-            Instalação profissional de ar condicionado split, câmeras, alarmes e cerca elétrica para residências e empresas.{' '}
+            Instalação profissional de ar condicionado split, câmeras e cerca elétrica para residências e empresas.{' '}
             <span className="text-white/90 font-medium">Mais de 7 mil instalações realizadas no Oeste do Paraná.</span>
           </p>
 
@@ -107,7 +93,8 @@ export default function Hero() {
             >
               <WhatsAppIcon />
               Solicitar Orçamento
-              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" className="transition-transform duration-300 group-hover:translate-x-1" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"
+                className="transition-transform duration-300 group-hover:translate-x-1" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
               </svg>
             </a>
@@ -122,11 +109,11 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Trust badges row */}
+          {/* Trust badges */}
           <div className="flex flex-wrap gap-x-7 gap-y-3 mb-12">
             {TRUST_BADGES.map((badge) => (
               <div key={badge.text} className="flex items-center gap-2.5 text-[13px] sm:text-[14px] text-white/65">
-                <span className="w-5 h-5 rounded-full bg-brand/20 text-brand-glow flex items-center justify-center text-[10px] flex-shrink-0">
+                <span className="w-5 h-5 rounded-full bg-brand/20 text-brand-glow flex items-center justify-center flex-shrink-0">
                   <svg width="11" height="11" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
@@ -136,9 +123,9 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Quick stats inline */}
+          {/* Stats */}
           <div className="flex flex-wrap gap-x-10 gap-y-5 pt-8 border-t border-white/[0.08]">
-            {QUICK_STATS.map((stat, i) => (
+            {QUICK_STATS.map((stat) => (
               <div key={stat.label} className="flex items-baseline gap-2.5">
                 <div className="font-sora font-extrabold text-white text-[26px] sm:text-[30px] leading-none">
                   {stat.number}
@@ -152,7 +139,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom scroll indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-50">
         <span className="text-white/60 text-[10px] uppercase tracking-[0.25em] font-sora font-medium">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent scroll-indicator" />
