@@ -1,3 +1,5 @@
+import heroBg from '../assets/images/hero-bg.jpg'
+
 const WA_ORCAMENTO = `https://wa.me/5545988114290?text=${encodeURIComponent('Olá! Quero solicitar um orçamento.')}`
 
 const TRUST_BADGES = [
@@ -25,24 +27,36 @@ function WhatsAppIcon({ size = 18 }) {
 export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen bg-navy flex items-center overflow-hidden">
-      {/* Background */}
+
+      {/* Foto real de fundo */}
       <div
-        className="absolute inset-0 bg-center bg-cover scale-110"
+        className="absolute inset-0 bg-center bg-cover"
+        style={{ backgroundImage: `url(${heroBg})`, opacity: 0.35 }}
+        aria-hidden="true"
+      />
+
+      {/* Grid overlay */}
+      <div className="absolute inset-0 hero-grid-overlay opacity-40" aria-hidden="true" />
+
+      {/* Gradiente escuro premium */}
+      <div
+        className="absolute inset-0"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1600&q=85')",
-          opacity: 0.15,
+          background:
+            'linear-gradient(125deg,rgba(10,22,40,0.97) 0%,rgba(10,22,40,0.82) 50%,rgba(13,31,60,0.90) 100%)',
         }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 hero-grid-overlay" aria-hidden="true" />
-      <div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(125deg,rgba(10,22,40,0.98) 0%,rgba(10,22,40,0.88) 45%,rgba(13,31,60,0.92) 100%)' }}
-        aria-hidden="true"
-      />
+
+      {/* Glows decorativos */}
       <div
         className="absolute -top-40 -right-40 w-[700px] h-[700px] pointer-events-none"
         style={{ background: 'radial-gradient(circle,rgba(26,108,245,0.18) 0%,transparent 60%)' }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -bottom-40 -left-40 w-[500px] h-[500px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle,rgba(74,158,255,0.10) 0%,transparent 60%)' }}
         aria-hidden="true"
       />
 
@@ -76,11 +90,11 @@ export default function Hero() {
 
           {/* Subheadline */}
           <p
-            className="text-white/70 leading-[1.6] max-w-[640px] mb-10 font-light"
-            style={{ fontSize: 'clamp(1.05rem,2vw,1.25rem)' }}
+            className="text-white/75 leading-[1.6] max-w-[640px] mb-10"
+            style={{ fontSize: 'clamp(1.05rem,2vw,1.2rem)' }}
           >
             Instalação profissional de ar condicionado split, câmeras e cerca elétrica para residências e empresas.{' '}
-            <span className="text-white/90 font-medium">Mais de 7 mil instalações realizadas no Oeste do Paraná.</span>
+            <span className="text-white font-semibold">Mais de 7 mil instalações no Oeste do Paraná.</span>
           </p>
 
           {/* CTAs */}
@@ -100,7 +114,7 @@ export default function Hero() {
             </a>
             <a
               href="#servicos"
-              className="flex items-center justify-center gap-3 bg-white/[0.04] hover:bg-white/[0.10] backdrop-blur-sm text-white font-sora font-medium text-[16px] px-8 py-[18px] rounded-[10px] border border-white/15 hover:border-white/30 transition-all duration-300"
+              className="flex items-center justify-center gap-3 bg-white/[0.06] hover:bg-white/[0.12] backdrop-blur-sm text-white font-sora font-medium text-[16px] px-8 py-[18px] rounded-[10px] border border-white/20 hover:border-white/35 transition-all duration-300"
             >
               Ver Serviços
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -109,7 +123,7 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Trust badges — maiores e mais chamativas */}
+          {/* Trust badges */}
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 mb-12">
             {TRUST_BADGES.map((badge) => (
               <div
@@ -141,7 +155,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-50">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-40">
         <span className="text-white/60 text-[10px] uppercase tracking-[0.25em] font-sora font-medium">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent scroll-indicator" />
       </div>
